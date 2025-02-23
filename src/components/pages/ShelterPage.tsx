@@ -52,13 +52,22 @@ const shelters = [
 const ShelterPage: React.FC = () => {
   const navigate = useNavigate();
   const [value, setValue] = useState(1);
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchQuery(e.target.value);
+  };
+
+  const filteredShelters = shelters.filter((shelter) =>
+    shelter.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   const handleChange = (e: React.SyntheticEvent, newValue: number) => {
     e.preventDefault();
     setValue(newValue);
     if (newValue === 0) {
       navigate("/homepage");
-    }
-    else if (newValue === 1) {
+    } else if (newValue === 1) {
       navigate("/shelters");
     }
   };
@@ -68,6 +77,8 @@ const ShelterPage: React.FC = () => {
         variant="outlined"
         placeholder="Find the location"
         fullWidth
+        value={searchQuery}
+        onChange={handleSearchChange}
         InputProps={{
           startAdornment: (
             <InputAdornment position="start">
@@ -86,27 +97,37 @@ const ShelterPage: React.FC = () => {
         }}
       />
       <List>
-        {shelters.map((shelter, index) => (
-          <Paper elevation={3} sx={{ borderRadius: "16px", mb: 1 }} key={index}>
-            <ListItem component="div">
-              <ListItemAvatar>
-                <Avatar sx={{ backgroundColor: "#980000", color: "white" }}>
-                  {shelter.icon}
-                </Avatar>
-              </ListItemAvatar>
-              <ListItemText
-                primary={shelter.name}
-                secondary={
-                  <>
-                    Distance: {shelter.distance}
-                    <br />
-                    {shelter.phone}
-                  </>
-                }
-              />
-            </ListItem>
-          </Paper>
-        ))}
+        {filteredShelters.length > 0 ? (
+          filteredShelters.map((shelter, index) => (
+            <Paper
+              elevation={3}
+              sx={{ borderRadius: "16px", mb: 1 }}
+              key={index}
+            >
+              <ListItem component="div">
+                <ListItemAvatar>
+                  <Avatar sx={{ backgroundColor: "#980000", color: "white" }}>
+                    {shelter.icon}
+                  </Avatar>
+                </ListItemAvatar>
+                <ListItemText
+                  primary={shelter.name}
+                  secondary={
+                    <>
+                      Distance: {shelter.distance}
+                      <br />
+                      {shelter.phone}
+                    </>
+                  }
+                />
+              </ListItem>
+            </Paper>
+          ))
+        ) : (
+          <ListItem>
+            <ListItemText primary="No results found" />
+          </ListItem>
+        )}
       </List>
       <BottomNavigationBar value={value} onChange={handleChange} />
     </Container>
