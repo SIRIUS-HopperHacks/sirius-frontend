@@ -23,4 +23,8 @@ export class ChatService {
   async findChat(chatId: string) {
     return this.dao.findChat(chatId);
   }
+
+  async getAllChatrooms() {
+    return this.dao.getAllChatrooms();
+  }
 }
