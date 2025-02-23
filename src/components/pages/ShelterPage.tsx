@@ -13,6 +13,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import LocalHospitalIcon from "@mui/icons-material/LocalHospital";
 import FireTruckIcon from "@mui/icons-material/LocalFireDepartment";
 import PoliceIcon from "@mui/icons-material/LocalPolice";
+import LocationOnIcon from "@mui/icons-material/LocationOn";
 import ShelterCard from "@molecules/ShelterCard";
 
 const shelters = [
@@ -57,7 +58,7 @@ const getIcon = (iconType: string) => {
     case "police":
       return <PoliceIcon />;
     default:
-      return <LocalHospitalIcon />;
+      return <LocationOnIcon />;
   }
 };
 
