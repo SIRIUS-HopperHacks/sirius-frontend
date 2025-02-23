@@ -29,4 +29,8 @@ export class PlaceDAO {
   async find(placeId: string) {
     return this.db.fetchOne("places", placeId);
   }
+
+  async getAll() {
+    return this.db.fetchAll("places");
+  }
 }
