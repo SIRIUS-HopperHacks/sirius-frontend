@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import BottomNavigationBar from "@molecules/BottomNavBar";
 import {
@@ -10,9 +10,11 @@ import {
   DialogActions,
 } from "@mui/material";
 import Map from "@molecules/Map";
+import { APIContext } from "@contexts/APIContext";
 
 const HomePage: React.FC = () => {
   const navigate = useNavigate();
+  const service = useContext(APIContext);
   const [value, setValue] = useState(0);
   const [open, setOpen] = useState(false);
 
@@ -27,6 +29,9 @@ const HomePage: React.FC = () => {
     else if (newValue === 1) {
       navigate("/shelters");
     }
+    else if (newValue === 2) {
+      navigate("/user-list");
+    }
     else if (newValue === 4) {
       navigate("/");
     }
@@ -35,6 +40,7 @@ const HomePage: React.FC = () => {
   const handleOpenDialog = () => {
     setOpen(true);
   };
+
   const handleCloseDialog = (confirmed: boolean) => {
     setOpen(false);
     if (confirmed) {
