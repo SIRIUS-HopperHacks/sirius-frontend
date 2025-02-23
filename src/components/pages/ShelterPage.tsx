@@ -16,6 +16,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import LocalHospitalIcon from "@mui/icons-material/LocalHospital";
 import FireTruckIcon from "@mui/icons-material/LocalFireDepartment";
 import PoliceIcon from "@mui/icons-material/LocalPolice";
+import ShelterCard from "@molecules/ShelterCard";
 
 const shelters = [
   {
@@ -99,29 +100,13 @@ const ShelterPage: React.FC = () => {
       <List>
         {filteredShelters.length > 0 ? (
           filteredShelters.map((shelter, index) => (
-            <Paper
-              elevation={3}
-              sx={{ borderRadius: "16px", mb: 1 }}
+            <ShelterCard
               key={index}
-            >
-              <ListItem component="div">
-                <ListItemAvatar>
-                  <Avatar sx={{ backgroundColor: "#980000", color: "white" }}>
-                    {shelter.icon}
-                  </Avatar>
-                </ListItemAvatar>
-                <ListItemText
-                  primary={shelter.name}
-                  secondary={
-                    <>
-                      Distance: {shelter.distance}
-                      <br />
-                      {shelter.phone}
-                    </>
-                  }
-                />
-              </ListItem>
-            </Paper>
+              name={shelter.name}
+              distance={shelter.distance}
+              phone={shelter.phone}
+              icon={shelter.icon}
+            />
           ))
         ) : (
           <ListItem>
