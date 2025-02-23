@@ -46,6 +46,9 @@ const SpecificShelterPage: React.FC = () => {
     } else if (newValue === 1) {
       navigate("/shelters");
     }
+    else if (newValue === 4) {
+      navigate("/");
+    }
   };
   const shelter = location.state?.shelter;
   const [searchQuery, setSearchQuery] = useState("");

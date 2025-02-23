@@ -1,6 +1,12 @@
 import React from "react";
 import { Tabs, Tab } from "@mui/material";
-import { Home, Search, ModeComment, AccountCircle } from "@mui/icons-material"
+import {
+  Home,
+  Search,
+  ModeComment,
+  AccountCircle,
+  Logout,
+} from "@mui/icons-material";
 
 interface BottomNavigationBarProps {
   value: number;
@@ -64,6 +70,15 @@ const BottomNavigationBar: React.FC<BottomNavigationBarProps> = ({
         }}
         icon={<AccountCircle />}
         onClick={() => onClick(3)}
+      />
+      <Tab
+        sx={{
+          color: "#980000",
+          "&.Mui-selected": { color: "#cc0000" },
+          "&:hover": { color: "#cc0000" },
+        }}
+        icon={<Logout />}
+        onClick={() => onClick(4)}
       />
     </Tabs>
   );
