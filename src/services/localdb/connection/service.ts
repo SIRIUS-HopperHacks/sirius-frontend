@@ -1,5 +1,8 @@
-import { ConnectionDAO } from "@localdb/connection/dao";
-import { CreateConnectionDTO, UpdateConnectionDTO } from "@localdb/connection/dto";
+import { ConnectionDAO } from "@services/localdb/connection/dao";
+import {
+  CreateConnectionDTO,
+  UpdateConnectionDTO,
+} from "@services/localdb/connection/dto";
 
 export class ConnectionService {
   dao: ConnectionDAO;

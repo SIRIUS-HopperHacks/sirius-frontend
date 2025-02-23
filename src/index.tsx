@@ -24,6 +24,11 @@ const dbConfig = {
       indexes: [{ name: "deviceId_idx", keyPath: "deviceId" }],
     },
     {
+      name: "connections",
+      options: { keyPath: "connectionId" },
+      indexes: [{ name: "deviceId_idx", keyPath: "deviceId" }],
+    },
+    {
       name: "chats",
       options: { keyPath: "connectionId" },
       indexes: [{ name: "sender_idx", keyPath: "sender" }],
@@ -117,11 +122,58 @@ async function initializeDB() {
       updatedTime: new Date("2025-02-23 14:42:33.000000"),
     },
   ];
-  
+
   const chatrooms = [
-    { connectionId: uuid4(), deviceId1: users[0], deviceId2: users[1] },
-    { connectionId: uuid4(), deviceId1: users[0], deviceId2: users[2] },
-    { connectionId: uuid4(), deviceId1: users[0], deviceId2: users[3] },
+    {
+      connectionId: uuid4(),
+      deviceId1: users[0].deviceId,
+      deviceId2: users[1].deviceId,
+    },
+    {
+      connectionId: uuid4(),
+      deviceId1: users[0].deviceId,
+      deviceId2: users[2].deviceId,
+    },
+    {
+      connectionId: uuid4(),
+      deviceId1: users[0].deviceId,
+      deviceId2: users[3].deviceId,
+    },
+  ];
+
+  const connections = [
+    {
+      connectionId: uuid4(),
+      deviceId: users[0].deviceId,
+      detectedLocation: "(25.7617, -80.1918)",
+      alertType: "HELLLLLP",
+      alertedTime: `${Date.now()}`,
+      detectedTime: `${Date.now()}`,
+    },
+    {
+      connectionId: uuid4(),
+      deviceId: users[1].deviceId,
+      detectedLocation: "(37.7749, -122.4194)",
+      alertType: "HELLLLLP",
+      alertedTime: `${Date.now()}`,
+      detectedTime: `${Date.now()}`,
+    },
+    {
+      connectionId: uuid4(),
+      deviceId: users[2].deviceId,
+      detectedLocation: "(34.0522, -118.2437)",
+      alertType: "HELLLLLP",
+      alertedTime: `${Date.now()}`,
+      detectedTime: `${Date.now()}`,
+    },
+    {
+      connectionId: uuid4(),
+      deviceId: users[3].deviceId,
+      detectedLocation: "(40.7128, -74.0060)",
+      alertType: "HELLLLLP",
+      alertedTime: `${Date.now()}`,
+      detectedTime: `${Date.now()}`,
+    },
   ];
 
   const db = new IndexedDB();
@@ -135,6 +187,10 @@ async function initializeDB() {
 
   for (const connection of chatrooms) {
     await db.insertOrUpdate("chatrooms", connection);
+  }
+
+  for (const connection of connections) {
+    await db.insertOrUpdate("connections", connection);
   }
 }
 

@@ -1,4 +1,4 @@
-import { CreateConnectionDTO, UpdateConnectionDTO } from "@localdb/connection/dto";
+import { CreateConnectionDTO, UpdateConnectionDTO } from "@services/localdb/connection/dto";
 import IndexedDB from "@lib/infra/idb";
 import { v4 as uuid4 } from "uuid";
 

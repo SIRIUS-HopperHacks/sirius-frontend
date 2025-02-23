@@ -23,4 +23,8 @@ export class PlaceService {
   async findPlace(placeId: string) {
     return this.dao.find(placeId);
   }
+
+  async getAllPlaces() {
+    return this.dao.getAll();
+  }
 }

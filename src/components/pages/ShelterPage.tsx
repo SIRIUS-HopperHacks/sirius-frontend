@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import BottomNavigationBar from "@molecules/BottomNavBar";
 import {
@@ -17,6 +17,7 @@ import {
   LocationOn,
 } from "@mui/icons-material";
 import ShelterCard from "@molecules/ShelterCard";
+import { APIContext } from "@contexts/APIContext";
 
 const getIcon = (iconType: string) => {
   switch (iconType) {
@@ -51,14 +52,22 @@ const ShelterPage: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const shelters = useRef<Shelter[]>([]);
 
+  const api = useContext(APIContext);
+
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(e.target.value);
   };
 
   useEffect(() => {
     const fetch = async () => {
-      // const response = await 
+      const response = await api?.getPlaces();
+      if (!response) {
+        return;
+      }
+      shelters.current = response;
+      setLoading(false);
     }
+    fetch();
   },[]);
 
   const filteredShelters = shelters.current.filter((shelter) =>
@@ -116,7 +125,7 @@ const ShelterPage: React.FC = () => {
                 name={shelter.name}
                 distance={shelter.distance}
                 phone={shelter.phone}
-                icon={getIcon(shelter.iconType)}
+                icon={getIcon(shelter.organizationType)}
               />
             </div>
           ))

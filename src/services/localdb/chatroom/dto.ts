@@ -1,30 +1,30 @@
 import { DataClass } from "ts-data-object";
 
 @DataClass()
-export class CreateConnectionDTO {
+export class CreateChatroomDTO {
   deviceId!: string;
   detectedLocation!: string;
   alertType!: string;
-  alertedTime!: string;
-  detectedTime!: string;
+  alertedTime!: Date;
+  detectedTime!: Date;
 }
 
 @DataClass()
-export class UpdateConnectionDTO {
+export class UpdateChatroomDTO {
   connectionId!: string;
   deviceId!: string;
   detectedLocation!: string;
   alertType!: string;
-  alertedTime!: string;
-  detectedTime!: string;
+  alertedTime!: Date;
+  detectedTime!: Date;
 }
 
 @DataClass()
-export class ConnectionDTO {
+export class ChatroomDTO {
   connectionId!: string;
   deviceId!: string;
   detectedLocation!: string;
   alertType!: string;
-  alertedTime!: string;
-  detectedTime!: string;
+  alertedTime!: Date;
+  detectedTime!: Date;
 }
