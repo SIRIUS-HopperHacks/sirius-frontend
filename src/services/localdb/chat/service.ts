@@ -27,4 +27,10 @@ export class ChatService {
   async getAllChatrooms() {
     return this.dao.getAllChatrooms();
   }
+
+  //delete chatroom
+  async deleteChatroom(chatroomId: string){
+    await this.dao.deleteChatsByChatroomId(chatroomId);
+    return this.dao.deleteChatRoom(chatroomId);
+  }
 }
