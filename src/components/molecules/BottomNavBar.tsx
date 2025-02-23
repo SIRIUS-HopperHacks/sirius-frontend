@@ -1,9 +1,6 @@
 import React from "react";
 import { Tabs, Tab } from "@mui/material";
-import HomeIcon from "@mui/icons-material/Home";
-import SearchIcon from "@mui/icons-material/Search";
-import ModeCommentIcon from "@mui/icons-material/ModeComment";
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import { Home, Search, ModeComment, AccountCircle } from "@mui/icons-material"
 
 interface BottomNavigationBarProps {
   value: number;
@@ -38,7 +35,7 @@ const BottomNavigationBar: React.FC<BottomNavigationBarProps> = ({
           "&.Mui-selected": { color: "#cc0000" },
           "&:hover": { color: "#cc0000" },
         }}
-        icon={<HomeIcon />}
+        icon={<Home />}
         onClick={() => onClick(0)}
       />
       <Tab
@@ -47,7 +44,7 @@ const BottomNavigationBar: React.FC<BottomNavigationBarProps> = ({
           "&.Mui-selected": { color: "#cc0000" },
           "&:hover": { color: "#cc0000" },
         }}
-        icon={<SearchIcon />}
+        icon={<Search />}
         onClick={() => onClick(1)}
       />
       <Tab
@@ -56,7 +53,7 @@ const BottomNavigationBar: React.FC<BottomNavigationBarProps> = ({
           "&.Mui-selected": { color: "#cc0000" },
           "&:hover": { color: "#cc0000" },
         }}
-        icon={<ModeCommentIcon />}
+        icon={<ModeComment />}
         onClick={() => onClick(2)}
       />
       <Tab
@@ -65,7 +62,7 @@ const BottomNavigationBar: React.FC<BottomNavigationBarProps> = ({
           "&.Mui-selected": { color: "#cc0000" },
           "&:hover": { color: "#cc0000" },
         }}
-        icon={<AccountCircleIcon />}
+        icon={<AccountCircle />}
         onClick={() => onClick(3)}
       />
     </Tabs>

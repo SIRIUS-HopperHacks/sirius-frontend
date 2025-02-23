@@ -12,25 +12,27 @@ import {
   Avatar,
   ListItemText,
 } from "@mui/material";
-import PhoneIcon from "@mui/icons-material/Phone";
-import LocationOnIcon from "@mui/icons-material/LocationOn";
-import LocalHospitalIcon from "@mui/icons-material/LocalHospital";
-import FireTruckIcon from "@mui/icons-material/LocalFireDepartment";
-import PoliceIcon from "@mui/icons-material/LocalPolice";
-import SearchIcon from "@mui/icons-material/Search";
+import {
+  Phone,
+  LocationOn,
+  LocalHospital,
+  FireTruck,
+  LocalPolice,
+  Search,
+} from "@mui/icons-material";
 import Map from "@molecules/Map";
 import BottomNavigationBar from "@molecules/BottomNavBar";
 
 const getIcon = (iconType: string) => {
   switch (iconType) {
     case "hospital":
-      return <LocalHospitalIcon />;
+      return <LocalHospital />;
     case "fire":
-      return <FireTruckIcon />;
+      return <FireTruck />;
     case "police":
-      return <PoliceIcon />;
+      return <LocalPolice />;
     default:
-      return <LocationOnIcon />;
+      return <LocationOn />;
   }
 };
 
@@ -69,7 +71,7 @@ const SpecificShelterPage: React.FC = () => {
         InputProps={{
           startAdornment: (
             <InputAdornment position="start">
-              <SearchIcon />
+              <Search />
             </InputAdornment>
           ),
         }}
@@ -85,7 +87,7 @@ const SpecificShelterPage: React.FC = () => {
       />
 
       <Paper elevation={3} sx={{ borderRadius: "16px", p: 2.5, mb: 2, mt: 2 }}>
-        <ListItem component="div" sx={{padding: 0}}>
+        <ListItem component="div" sx={{ padding: 0 }}>
           <ListItemAvatar>
             <Avatar sx={{ backgroundColor: "#980000", color: "white" }}>
               {getIcon(shelter.iconType)}
@@ -102,12 +104,14 @@ const SpecificShelterPage: React.FC = () => {
             }
           />
         </ListItem>
-        <Box sx={{ display: "flex", alignItems: "center", gap: 1, mt: 1}}>
-          <PhoneIcon color="error" />
+        <Box sx={{ display: "flex", alignItems: "center", gap: 1, mt: 1 }}>
+          <Phone color="error" />
           <Typography variant="body2">{shelter.phone}</Typography>
         </Box>
-        <Box sx={{ display: "flex", alignItems: "center", gap: 1, mt: 1, mb: 2 }}>
-          <LocationOnIcon color="error" />
+        <Box
+          sx={{ display: "flex", alignItems: "center", gap: 1, mt: 1, mb: 2 }}
+        >
+          <LocationOn color="error" />
           <Typography variant="body2">
             29-59 Northern Blvd, Long Island City, NY 11101
           </Typography>

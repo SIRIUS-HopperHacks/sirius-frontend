@@ -9,11 +9,13 @@ import {
   ListItem,
   ListItemText,
 } from "@mui/material";
-import SearchIcon from "@mui/icons-material/Search";
-import LocalHospitalIcon from "@mui/icons-material/LocalHospital";
-import FireTruckIcon from "@mui/icons-material/LocalFireDepartment";
-import PoliceIcon from "@mui/icons-material/LocalPolice";
-import LocationOnIcon from "@mui/icons-material/LocationOn";
+import {
+  Search,
+  LocalHospital,
+  FireTruck,
+  LocalPolice,
+  LocationOn,
+} from "@mui/icons-material";
 import ShelterCard from "@molecules/ShelterCard";
 
 const shelters = [
@@ -52,13 +54,13 @@ const shelters = [
 const getIcon = (iconType: string) => {
   switch (iconType) {
     case "hospital":
-      return <LocalHospitalIcon />;
+      return <LocalHospital />;
     case "fire":
-      return <FireTruckIcon />;
+      return <FireTruck />;
     case "police":
-      return <PoliceIcon />;
+      return <LocalPolice />;
     default:
-      return <LocationOnIcon />;
+      return <LocationOn />;
   }
 };
 
@@ -99,7 +101,7 @@ const ShelterPage: React.FC = () => {
         InputProps={{
           startAdornment: (
             <InputAdornment position="start">
-              <SearchIcon />
+              <Search />
             </InputAdornment>
           ),
         }}
