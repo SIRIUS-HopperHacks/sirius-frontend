@@ -15,8 +15,8 @@ const HomePage: React.FC = () => {
   const navigate = useNavigate();
   const [value, setValue] = useState(0);
   const [open, setOpen] = useState(false);
-  const handleChange = (e: React.SyntheticEvent, newValue: number) => {
-    e.preventDefault();
+
+  const handleClick = (newValue: number) => {
     setValue(newValue);
     if (newValue === 0) {
       navigate("/homepage");
@@ -74,7 +74,7 @@ const HomePage: React.FC = () => {
           </Button>
         </DialogActions>
       </Dialog>
-      <BottomNavigationBar value={value} onChange={handleChange} />
+      <BottomNavigationBar value={value} onClick={handleClick} />
     </Container>
   );
 };

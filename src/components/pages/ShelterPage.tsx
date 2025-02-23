@@ -74,8 +74,7 @@ const ShelterPage: React.FC = () => {
     shelter.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  const handleChange = (e: React.SyntheticEvent, newValue: number) => {
-    e.preventDefault();
+  const handleClick = (newValue: number) => {
     setValue(newValue);
     if (newValue === 0) {
       navigate("/homepage");
@@ -131,7 +130,7 @@ const ShelterPage: React.FC = () => {
           </ListItem>
         )}
       </List>
-      <BottomNavigationBar value={value} onChange={handleChange} />
+      <BottomNavigationBar value={value} onClick={handleClick} />
     </Container>
   );
 };

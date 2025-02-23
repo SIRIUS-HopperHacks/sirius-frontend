@@ -7,17 +7,16 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
 interface BottomNavigationBarProps {
   value: number;
-  onChange: (event: React.SyntheticEvent, newValue: number) => void;
+  onClick: (newValue: number) => void;
 }
 
 const BottomNavigationBar: React.FC<BottomNavigationBarProps> = ({
   value,
-  onChange,
+  onClick,
 }) => {
   return (
     <Tabs
       value={value}
-      onChange={onChange}
       aria-label="bottom navigation tabs"
       centered
       sx={{
@@ -40,6 +39,7 @@ const BottomNavigationBar: React.FC<BottomNavigationBarProps> = ({
           "&:hover": { color: "#cc0000" },
         }}
         icon={<HomeIcon />}
+        onClick={() => onClick(0)}
       />
       <Tab
         sx={{
@@ -48,6 +48,7 @@ const BottomNavigationBar: React.FC<BottomNavigationBarProps> = ({
           "&:hover": { color: "#cc0000" },
         }}
         icon={<SearchIcon />}
+        onClick={() => onClick(1)}
       />
       <Tab
         sx={{
@@ -56,6 +57,7 @@ const BottomNavigationBar: React.FC<BottomNavigationBarProps> = ({
           "&:hover": { color: "#cc0000" },
         }}
         icon={<ModeCommentIcon />}
+        onClick={() => onClick(2)}
       />
       <Tab
         sx={{
@@ -64,6 +66,7 @@ const BottomNavigationBar: React.FC<BottomNavigationBarProps> = ({
           "&:hover": { color: "#cc0000" },
         }}
         icon={<AccountCircleIcon />}
+        onClick={() => onClick(3)}
       />
     </Tabs>
   );

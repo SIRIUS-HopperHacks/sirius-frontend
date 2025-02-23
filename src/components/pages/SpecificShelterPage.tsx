@@ -20,8 +20,7 @@ const SpecificShelterPage: React.FC = () => {
   const location = useLocation();
   const [value, setValue] = useState(1);
 
-  const handleChange = (e: React.SyntheticEvent, newValue: number) => {
-    e.preventDefault();
+  const handleClick = (newValue: number) => {
     setValue(newValue);
     if (newValue === 0) {
       navigate("/homepage");
@@ -87,7 +86,7 @@ const SpecificShelterPage: React.FC = () => {
       </Paper>
 
       <Map />
-      <BottomNavigationBar value={value} onChange={handleChange} />
+      <BottomNavigationBar value={value} onClick={handleClick} />
     </Container>
   );
 };
