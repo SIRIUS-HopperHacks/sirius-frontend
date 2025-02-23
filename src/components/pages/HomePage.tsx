@@ -1,33 +1,29 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import BottomNavigationBar from "@molecules/BottomNavBar";
 import {
   Container,
   Button,
-  Tabs,
-  Tab,
   Box,
   Dialog,
   DialogTitle,
   DialogActions,
 } from "@mui/material";
 import Map from "@molecules/Map";
-import HomeIcon from "@mui/icons-material/Home";
-import SearchIcon from "@mui/icons-material/Search";
-import ModeCommentIcon from "@mui/icons-material/ModeComment";
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
-const SignUpPage: React.FC = () => {
-  const mapContainerStyle = {
-    width: "100%",
-    height: "80vh",
-    borderRadius: "1rem",
-    overflow: "hidden",
-  };
-
+const HomePage: React.FC = () => {
+  const navigate = useNavigate();
   const [value, setValue] = useState(0);
   const [open, setOpen] = useState(false);
-  const handleChange = (e: React.SyntheticEvent, newValue: number) => {
-    e.preventDefault();
+
+  const handleClick = (newValue: number) => {
     setValue(newValue);
+    if (newValue === 0) {
+      navigate("/homepage");
+    }
+    else if (newValue === 1) {
+      navigate("/shelters");
+    }
   };
 
   const handleOpenDialog = () => {
@@ -78,59 +74,9 @@ const SignUpPage: React.FC = () => {
           </Button>
         </DialogActions>
       </Dialog>
-      <Tabs
-        value={value}
-        onChange={handleChange}
-        aria-label="icon position tabs example"
-        centered
-        sx={{
-          position: "fixed",
-          bottom: 0,
-          left: 0,
-          width: "100%",
-          backgroundColor: "white",
-          boxShadow: 3,
-          "& .MuiTabs-indicator": {
-            backgroundColor: "#d32f2f",
-            height: "4px",
-          },
-        }}
-      >
-        <Tab
-          sx={{
-            color: "#980000",
-            "&.Mui-selected": { color: "#cc0000" },
-            "&:hover": { color: "#cc0000" },
-          }}
-          icon={<HomeIcon />}
-        />
-        <Tab
-          sx={{
-            color: "#980000",
-            "&.Mui-selected": { color: "#cc0000" },
-            "&:hover": { color: "#cc0000" },
-          }}
-          icon={<SearchIcon />}
-        />
-        <Tab
-          sx={{
-            color: "#980000",
-            "&.Mui-selected": { color: "#cc0000" },
-            "&:hover": { color: "#cc0000" },
-          }}
-          icon={<ModeCommentIcon />}
-        />
-        <Tab
-          sx={{
-            color: "#980000",
-            "&.Mui-selected": { color: "#cc0000" },
-            "&:hover": { color: "#cc0000" },
-          }}
-          icon={<AccountCircleIcon />}
-        />
-      </Tabs>
+      <BottomNavigationBar value={value} onClick={handleClick} />
     </Container>
   );
 };
 
-export default SignUpPage;
+export default HomePage;
