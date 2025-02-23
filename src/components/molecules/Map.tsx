@@ -7,12 +7,11 @@ const containerStyle = {
   borderRadius: "1rem",
 };
 
-const center = {
-  lat: 37.7749,
-  lng: -122.4194,
-};
+interface MapProps {
+  center: { lat: number; lng: number };
+}
 
-const Map: React.FC = () => {
+const Map: React.FC<MapProps> = ({center}) => {
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
     googleMapsApiKey: "AIzaSyDaJxSlku3EfQzz7K4sYcllE4FzbiQxqOM",

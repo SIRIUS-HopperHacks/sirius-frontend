@@ -7,8 +7,6 @@ import {
   Box,
   TextField,
   InputAdornment,
-  ListItem,
-  ListItemAvatar,
   Avatar,
   ListItemText,
 } from "@mui/material";
@@ -86,37 +84,55 @@ const SpecificShelterPage: React.FC = () => {
         }}
       />
 
-      <Paper elevation={3} sx={{ borderRadius: "16px", p: 2.5, mb: 2, mt: 2 }}>
-        <ListItem component="div" sx={{ padding: 0 }}>
-          <ListItemAvatar>
-            <Avatar sx={{ backgroundColor: "#980000", color: "white" }}>
-              {getIcon(shelter.iconType)}
-            </Avatar>
-          </ListItemAvatar>
-          <ListItemText
-            primary={shelter.name}
-            secondary={
-              <>
-                Distance: {shelter.distance}
-                <br />
-                {shelter.phone}
-              </>
-            }
-          />
-        </ListItem>
-        <Box sx={{ display: "flex", alignItems: "center", gap: 1, mt: 1 }}>
-          <Phone color="error" />
-          <Typography variant="body2">{shelter.phone}</Typography>
+      <Paper
+        elevation={3}
+        sx={{
+          borderRadius: "16px",
+          p: 2.5,
+          mb: 8,
+          mt: 2,
+          display: "flex",
+          flexDirection: "column",
+        }}
+      >
+        <Box display={"flex"}>
+          <Avatar sx={{ backgroundColor: "#980000", color: "white", mr: 3 }}>
+            {getIcon(shelter.iconType)}
+          </Avatar>
+          <Box display={"flex"} flexDirection={"column"}>
+            <ListItemText
+              primary={shelter.name}
+              secondary={
+                <>
+                  Distance: {shelter.distance}
+                  <br />
+                  {shelter.phone}
+                </>
+              }
+            />
+            <Box>
+              <Box
+                sx={{ display: "flex", alignItems: "center", gap: 1, mt: 1 }}
+              >
+                <Phone color="error" />
+                <Typography variant="body2">{shelter.phone}</Typography>
+              </Box>
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 1,
+                  mt: 1,
+                  mb: 2,
+                }}
+              >
+                <LocationOn color="error" />
+                <Typography variant="body2">{shelter.location}</Typography>
+              </Box>
+            </Box>
+          </Box>
         </Box>
-        <Box
-          sx={{ display: "flex", alignItems: "center", gap: 1, mt: 1, mb: 2 }}
-        >
-          <LocationOn color="error" />
-          <Typography variant="body2">
-            29-59 Northern Blvd, Long Island City, NY 11101
-          </Typography>
-        </Box>
-        <Map />
+        <Map center={{ lat: shelter.lat, lng: shelter.lng }} />
       </Paper>
       <BottomNavigationBar value={value} onClick={handleClick} />
     </Container>

@@ -9,7 +9,7 @@ const LoginPage: React.FC = () => {
 
   const handleAdmin = (e: React.FormEvent) => {
     e.preventDefault();
-    navigate("/admin");
+    window.location.href = "http://localhost:8000/";
   };
 
   const handleUser = (e: React.FormEvent) => {
