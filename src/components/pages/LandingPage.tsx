@@ -1,7 +1,6 @@
 import React from "react";
 import { Container, Box, Typography, Link } from "@mui/material";
 import PrimaryButton from "@atoms/PrimaryButton";
-import PeopleOutlineIcon from "@mui/icons-material/PeopleOutline";
 import { useNavigate } from "react-router-dom";
 import logo from "@assets/logo/SIRIUS_LOGO.png";
 
