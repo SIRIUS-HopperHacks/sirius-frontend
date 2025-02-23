@@ -14,7 +14,7 @@ import { APIContext } from "@contexts/APIContext";
 
 const HomePage: React.FC = () => {
   const navigate = useNavigate();
-  const service = useContext(APIContext);
+  const api = useContext(APIContext);
   const [value, setValue] = useState(0);
   const [open, setOpen] = useState(false);
 
@@ -41,9 +41,11 @@ const HomePage: React.FC = () => {
     setOpen(true);
   };
 
-  const handleCloseDialog = (confirmed: boolean) => {
+  const handleCloseDialog = async (confirmed: boolean) => {
     setOpen(false);
     if (confirmed) {
+      await api?.sendToNearbyUsers();
+      await api?.alertToServer();
       console.log("Confirmed!");
     } else {
       console.log("Cancelled!");

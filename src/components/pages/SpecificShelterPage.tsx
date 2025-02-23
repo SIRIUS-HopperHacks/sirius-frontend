@@ -47,8 +47,7 @@ const SpecificShelterPage: React.FC = () => {
       navigate("/shelters");
     } else if (newValue === 2) {
       navigate("/user-list");
-    }
-    else if (newValue === 4) {
+    } else if (newValue === 4) {
       navigate("/");
     }
   };
@@ -137,7 +136,16 @@ const SpecificShelterPage: React.FC = () => {
             </Box>
           </Box>
         </Box>
-        <Map center={{ lat: shelter.lat, lng: shelter.lng }} />
+        <Map
+          center={{
+            lat: Number.parseFloat(
+              shelter.placeLocation.split(",")[0].substring(1)
+            ),
+            lng: Number.parseFloat(
+              shelter.placeLocation.split(",")[1].replace(")", "")
+            ),
+          }}
+        />
       </Paper>
       <BottomNavigationBar value={value} onClick={handleClick} />
     </Container>

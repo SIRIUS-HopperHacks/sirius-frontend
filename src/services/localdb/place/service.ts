@@ -33,7 +33,7 @@ export class PlaceService {
 
   async findPlacesByOrganization(organizationType: string) {
     const allPlaces = await this.getAllPlaces();
-    return allPlaces.filter((place) => place.organizationType === organizationType);
+    return allPlaces.filter((place) => (place as any).organizationType === organizationType);
   }
 
 
@@ -73,7 +73,7 @@ export class PlaceService {
     let minDistance = Infinity;
     for (const place of allPlaces) {
       try {
-        const [placeLat, placeLon] = this.extractCoordinates(place.placeLocation);
+        const [placeLat, placeLon] = this.extractCoordinates((place as any).placeLocation);
         const distance = this.calculateDistance(lat, lon, placeLat, placeLon);
         if (distance < minDistance) {
           minDistance = distance;
