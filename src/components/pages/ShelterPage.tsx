@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import BottomNavigationBar from "@molecules/BottomNavBar";
 import {
   Container,
   TextField,
@@ -14,6 +16,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import LocalHospitalIcon from "@mui/icons-material/LocalHospital";
 import FireTruckIcon from "@mui/icons-material/LocalFireDepartment";
 import PoliceIcon from "@mui/icons-material/LocalPolice";
+
 const shelters = [
   {
     name: "Mather Hospital",
@@ -47,6 +50,18 @@ const shelters = [
   },
 ];
 const ShelterPage: React.FC = () => {
+  const navigate = useNavigate();
+  const [value, setValue] = useState(1);
+  const handleChange = (e: React.SyntheticEvent, newValue: number) => {
+    e.preventDefault();
+    setValue(newValue);
+    if (newValue === 0) {
+      navigate("/homepage");
+    }
+    else if (newValue === 1) {
+      navigate("/shelters");
+    }
+  };
   return (
     <Container>
       <TextField
@@ -93,6 +108,7 @@ const ShelterPage: React.FC = () => {
           </Paper>
         ))}
       </List>
+      <BottomNavigationBar value={value} onChange={handleChange} />
     </Container>
   );
 };
