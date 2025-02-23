@@ -33,4 +33,11 @@ export class ConnectionDAO {
   async getAll() {
     return this.db.fetchAll("connections");
   }
+
+  async updateStatus(connectionId: string, status: string) {
+    const connection = await this.db.fetchOne("connections", connectionId);
+    if(connection) {
+      await this.db.insertOrUpdate("connections",{...connection, alertType: status })
+    }
+  }
 }

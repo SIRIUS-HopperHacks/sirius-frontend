@@ -53,6 +53,16 @@ async function initializeDB() {
       deviceLocation: "(40.745, -73.825)",
       time: new Date("2025-02-23 17:05:31.532555"),
     },
+    {
+      deviceId: uuid4(),
+      deviceLocation: "(40.735, -74.811)",
+      time: new Date("2025-02-23 17:05:35.232345"),
+    },
+    {
+      deviceId: uuid4(),
+      deviceLocation: "(40.735, -74.809)",
+      time: new Date("2025-02-23 17:05:35.698304")
+    }
   ];
 
   const places = [
