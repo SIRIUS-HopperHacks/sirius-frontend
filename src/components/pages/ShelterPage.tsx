@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import BottomNavigationBar from "@molecules/BottomNavBar";
 import {
@@ -18,54 +18,6 @@ import {
 } from "@mui/icons-material";
 import ShelterCard from "@molecules/ShelterCard";
 
-const shelters = [
-  {
-    name: "Mather Hospital",
-    distance: "0.5 miles",
-    phone: "+1-202-555-0114",
-    location: "75 North Country Rd, Port Jefferson, NY 11777",
-    lat: 40.9468,
-    lng: -73.0681,
-    iconType: "hospital",
-  },
-  {
-    name: "Port Jefferson Fire Department",
-    distance: "0.7 miles",
-    phone: "+1-202-555-0114",
-    location: "115 Maple Place, Port Jefferson, NY 11777",
-    lat: 40.9461,
-    lng: -73.0699,
-    iconType: "fire",
-  },
-  {
-    name: "A Police Department",
-    distance: "1.2 miles",
-    phone: "+1-202-555-0114",
-    location: "200 W Main St, Smithtown, NY 11787",
-    lat: 40.8553,
-    lng: -73.2038,
-    iconType: "police",
-  },
-  {
-    name: "B Police Department",
-    distance: "1.5 miles",
-    phone: "+1-202-555-0114",
-    location: "110 Old Country Rd, Mineola, NY 11501",
-    lat: 40.7402,
-    lng: -73.6407,
-    iconType: "police",
-  },
-  {
-    name: "C Police Department",
-    distance: "1.7 miles",
-    phone: "+1-202-555-0114",
-    location: "300 W Main St, Riverhead, NY 11901",
-    lat: 40.9170,
-    lng: -72.6623,
-    iconType: "police",
-  },
-];
-
 const getIcon = (iconType: string) => {
   switch (iconType) {
     case "hospital":
@@ -79,16 +31,37 @@ const getIcon = (iconType: string) => {
   }
 };
 
+type OrganizationType = "police" | "fire" | "hospital" | "shelter";
+
+interface Shelter {
+  placeId: string;
+  name: string;
+  distance: string;
+  phone: string;
+  organizationType: OrganizationType,
+  location: string;
+  placeLocation: string;
+  updatedTime: Date;
+}
+
 const ShelterPage: React.FC = () => {
   const navigate = useNavigate();
   const [value, setValue] = useState(1);
   const [searchQuery, setSearchQuery] = useState("");
+  const [loading, setLoading] = useState(true);
+  const shelters = useRef<Shelter[]>([]);
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(e.target.value);
   };
 
-  const filteredShelters = shelters.filter((shelter) =>
+  useEffect(() => {
+    const fetch = async () => {
+      // const response = await 
+    }
+  },[]);
+
+  const filteredShelters = shelters.current.filter((shelter) =>
     shelter.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
