@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   Container,
   Button,
@@ -15,19 +16,16 @@ import SearchIcon from "@mui/icons-material/Search";
 import ModeCommentIcon from "@mui/icons-material/ModeComment";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
-const SignUpPage: React.FC = () => {
-  const mapContainerStyle = {
-    width: "100%",
-    height: "80vh",
-    borderRadius: "1rem",
-    overflow: "hidden",
-  };
-
+const HomePage: React.FC = () => {
+  const navigate = useNavigate();
   const [value, setValue] = useState(0);
   const [open, setOpen] = useState(false);
   const handleChange = (e: React.SyntheticEvent, newValue: number) => {
     e.preventDefault();
     setValue(newValue);
+    if (newValue === 1) {
+      navigate("/shelters");
+    }
   };
 
   const handleOpenDialog = () => {
@@ -133,4 +131,4 @@ const SignUpPage: React.FC = () => {
   );
 };
 
-export default SignUpPage;
+export default HomePage;
