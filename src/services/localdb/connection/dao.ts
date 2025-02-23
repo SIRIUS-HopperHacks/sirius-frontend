@@ -29,4 +29,8 @@ export class ConnectionDAO {
   async find(connectionId: string) {
     return this.db.fetchOne("connections", connectionId);
   }
+
+  async getAll() {
+    return this.db.fetchAll("connections");
+  }
 }

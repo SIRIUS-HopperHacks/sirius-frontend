@@ -23,4 +23,8 @@ export class ConnectionService {
   async findConnection(connectionId: string) {
     return this.dao.find(connectionId);
   }
+
+  async getAllConnections() {
+    return this.dao.getAll();
+  }
 }

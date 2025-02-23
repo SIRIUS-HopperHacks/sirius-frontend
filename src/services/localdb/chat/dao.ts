@@ -10,9 +10,9 @@ export class ChatDAO {
   }
 
   async createChatroom(inputData: CreateChatroomDTO) {
-    const chatroomId = uuid4();
-    const chatroom = { ...inputData, chatroomId };
-    await this.db.insertOrUpdate("chats", chatroom);
+    const connectionId = uuid4();
+    const chatroom = { ...inputData, connectionId };
+    await this.db.insertOrUpdate("chatrooms", chatroom);
   }
 
   async createChat(inputData: CreateChatDTO) {
@@ -27,5 +27,9 @@ export class ChatDAO {
 
   async findChat(chatId: string) {
     return this.db.fetchOne("chats", chatId);
+  }
+
+  async getAllChatrooms() {
+    return this.db.fetchAll("chatrooms");
   }
 }
