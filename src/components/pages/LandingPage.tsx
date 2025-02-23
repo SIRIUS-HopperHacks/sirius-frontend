@@ -1,15 +1,15 @@
 import React from "react";
 import { Container, Box, Typography, Link } from "@mui/material";
 import PrimaryButton from "@atoms/PrimaryButton";
-import PeopleOutlineIcon from "@mui/icons-material/PeopleOutline";
 import { useNavigate } from "react-router-dom";
+import logo from "@assets/logo/SIRIUS_LOGO.png";
 
 const LoginPage: React.FC = () => {
   const navigate = useNavigate();
 
   const handleAdmin = (e: React.FormEvent) => {
     e.preventDefault();
-    navigate("/admin");
+    window.location.href = "http://localhost:8000/";
   };
 
   const handleUser = (e: React.FormEvent) => {
@@ -32,7 +32,11 @@ const LoginPage: React.FC = () => {
         }}
       >
         <Box sx={{ display: "flex", justifyContent: "center", mb: 1 }}>
-          <PeopleOutlineIcon fontSize="large" />
+          <img
+            src={logo}
+            alt="Sirius Logo"
+            style={{ width: "10rem", height: "auto", marginTop: "2rem" }}
+          />
         </Box>
         <Typography
           variant="h4"
@@ -51,7 +55,14 @@ const LoginPage: React.FC = () => {
         >
           Stay Safe, Anytime, Anywhere
         </Typography>
-        <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 2 }}>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            gap: 2,
+          }}
+        >
           <PrimaryButton
             type="submit"
             sx={{
