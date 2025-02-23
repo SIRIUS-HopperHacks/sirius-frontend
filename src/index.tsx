@@ -48,6 +48,11 @@ async function initializeDB() {
       deviceLocation: "(40.735, -73.875)",
       time: new Date("2025-02-23 17:05:31.555555"),
     },
+    {
+      deviceId: uuid4(),
+      deviceLocation: "(40.745, -73.825)",
+      time: new Date("2025-02-23 17:05:31.532555"),
+    },
   ];
 
   const places = [
@@ -78,9 +83,9 @@ async function initializeDB() {
   ];
 
   const connections = [
-    { connectionId: "1", deviceId: "1" },
-    { connectionId: "2", deviceId: "2" },
-    { connectionId: "3", deviceId: "3" },
+    { connectionId: uuid4(), deviceId1: users[0], deviceId2: users[1],  },
+    { connectionId: uuid4(), deviceId1: users[0], deviceId2: users[2],  },
+    { connectionId: uuid4(), deviceId1: users[0], deviceId2: users[3],  },
   ];
 
   const chats = [
@@ -90,7 +95,12 @@ async function initializeDB() {
   ];
 
   const db = new IndexedDB();
-  await db.insertOrUpdate("users", users);
+  for (const user of users) {
+    await db.insertOrUpdate("users", user);
+  }
+
+  console.log(await db.fetchAll("users"));
+
   await db.insertOrUpdate("places", places);
   await db.insertOrUpdate("connections", connections);
   await db.insertOrUpdate("chats", chats);
@@ -100,7 +110,7 @@ async function initializeApp() {
   try {
     await IndexedDB.initDB(dbConfig);
     console.log("IndexedDB initialized, now rendering UI...");
-
+    await initializeDB();
     const root = ReactDOM.createRoot(
       document.getElementById("root") as HTMLElement
     );
