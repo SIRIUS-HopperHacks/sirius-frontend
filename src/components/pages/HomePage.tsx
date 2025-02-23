@@ -29,6 +29,9 @@ const HomePage: React.FC = () => {
     else if (newValue === 1) {
       navigate("/shelters");
     }
+    else if (newValue === 2) {
+      navigate("/user-list");
+    }
     else if (newValue === 4) {
       navigate("/");
     }
