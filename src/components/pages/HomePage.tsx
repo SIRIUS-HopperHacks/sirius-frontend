@@ -9,7 +9,7 @@ import {
   DialogTitle,
   DialogActions,
 } from "@mui/material";
-import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
+import Map from "@molecules/Map";
 import HomeIcon from "@mui/icons-material/Home";
 import SearchIcon from "@mui/icons-material/Search";
 import ModeCommentIcon from "@mui/icons-material/ModeComment";
@@ -21,11 +21,6 @@ const SignUpPage: React.FC = () => {
     height: "80vh",
     borderRadius: "1rem",
     overflow: "hidden",
-  };
-
-  const center = {
-    lat: 37.7749,
-    lng: -122.4194,
   };
 
   const [value, setValue] = useState(0);
@@ -57,15 +52,7 @@ const SignUpPage: React.FC = () => {
       }}
     >
       <Box sx={{ width: "100%", height: "80vh" }}>
-        <LoadScript googleMapsApiKey="AIzaSyDaJxSlku3EfQzz7K4sYcllE4FzbiQxqOM">
-          <GoogleMap
-            mapContainerStyle={mapContainerStyle}
-            center={center}
-            zoom={12}
-          >
-            <Marker position={center} />
-          </GoogleMap>
-        </LoadScript>
+        <Map />
       </Box>
       <Box
         sx={{
