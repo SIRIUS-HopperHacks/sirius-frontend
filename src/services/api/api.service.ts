@@ -60,7 +60,7 @@ export class APIService {
 
   async alertToServer() {
     const connections = await this.services.connection.getAllConnections();
-    this.axios.post("/alert", { alerts: connections });
+    this.axios.post("/enqueue", { alerts: connections });
   }
 
   async getChatrooms() {
