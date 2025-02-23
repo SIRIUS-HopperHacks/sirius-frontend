@@ -1,1 +1,1 @@
-# sirius-frontend
+# hopperhacks-frontend
