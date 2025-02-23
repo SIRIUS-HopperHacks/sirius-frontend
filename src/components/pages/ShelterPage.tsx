@@ -99,6 +99,9 @@ const ShelterPage: React.FC = () => {
     } else if (newValue === 1) {
       navigate("/shelters");
     }
+    else if (newValue === 4) {
+      navigate("/");
+    }
   };
 
   const handleShelterClick = (shelter: any) => {

@@ -28,10 +28,12 @@
       "@services/*": ["services/*"],
       "@shared/*": ["shared/*"],
       "@lib/*": ["lib/*"],
-      "@localdb/*": ["services/localdb/*"]
+      "@localdb/*": ["services/localdb/*"],
+      "@types/*": ["types/*"]
     },
-    "outDir": "./dist"
+    "outDir": "./dist",
   },
-  "include": ["src"],
-  "exclude": ["node_modules"]
+  "include": ["src", "types"],
+  "exclude": ["node_modules"],
+  
 }
