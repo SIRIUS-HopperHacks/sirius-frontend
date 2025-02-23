@@ -16,6 +16,9 @@ const HomePage: React.FC = () => {
   const [value, setValue] = useState(0);
   const [open, setOpen] = useState(false);
 
+  // Set random user location
+  const userLocation = { lat: 40.7128, lng: -74.006 };
+
   const handleClick = (newValue: number) => {
     setValue(newValue);
     if (newValue === 0) {
@@ -48,7 +51,7 @@ const HomePage: React.FC = () => {
       }}
     >
       <Box sx={{ width: "100%", height: "80vh" }}>
-        <Map />
+        <Map center={userLocation} />
       </Box>
       <Box
         sx={{
