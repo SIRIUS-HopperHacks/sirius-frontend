@@ -7,10 +7,7 @@ import {
   InputAdornment,
   List,
   ListItem,
-  ListItemAvatar,
   ListItemText,
-  Avatar,
-  Paper,
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import LocalHospitalIcon from "@mui/icons-material/LocalHospital";
@@ -23,33 +20,47 @@ const shelters = [
     name: "Mather Hospital",
     distance: "0.5 miles",
     phone: "+1-202-555-0114",
-    icon: <LocalHospitalIcon />,
+    iconType: "hospital",
   },
   {
     name: "Port Jefferson Fire Department",
     distance: "0.7 miles",
     phone: "+1-202-555-0114",
-    icon: <FireTruckIcon />,
+    iconType: "fire",
   },
   {
     name: "A Police Department",
     distance: "1.2 miles",
     phone: "+1-202-555-0114",
-    icon: <PoliceIcon />,
+    iconType: "police",
   },
   {
     name: "B Police Department",
     distance: "1.5 miles",
     phone: "+1-202-555-0114",
-    icon: <PoliceIcon />,
+    iconType: "police",
   },
   {
     name: "C Police Department",
     distance: "1.7 miles",
     phone: "+1-202-555-0114",
-    icon: <PoliceIcon />,
+    iconType: "police",
   },
 ];
+
+const getIcon = (iconType: string) => {
+  switch (iconType) {
+    case "hospital":
+      return <LocalHospitalIcon />;
+    case "fire":
+      return <FireTruckIcon />;
+    case "police":
+      return <PoliceIcon />;
+    default:
+      return <LocalHospitalIcon />;
+  }
+};
+
 const ShelterPage: React.FC = () => {
   const navigate = useNavigate();
   const [value, setValue] = useState(1);
@@ -72,6 +83,11 @@ const ShelterPage: React.FC = () => {
       navigate("/shelters");
     }
   };
+
+  const handleShelterClick = (shelter: any) => {
+    navigate("/shelter-details", { state: { shelter } });
+  };
+
   return (
     <Container>
       <TextField
@@ -100,13 +116,14 @@ const ShelterPage: React.FC = () => {
       <List>
         {filteredShelters.length > 0 ? (
           filteredShelters.map((shelter, index) => (
-            <ShelterCard
-              key={index}
-              name={shelter.name}
-              distance={shelter.distance}
-              phone={shelter.phone}
-              icon={shelter.icon}
-            />
+            <div key={index} onClick={() => handleShelterClick(shelter)}>
+              <ShelterCard
+                name={shelter.name}
+                distance={shelter.distance}
+                phone={shelter.phone}
+                icon={getIcon(shelter.iconType)}
+              />
+            </div>
           ))
         ) : (
           <ListItem>
